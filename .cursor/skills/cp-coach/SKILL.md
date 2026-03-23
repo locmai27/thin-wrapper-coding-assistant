@@ -76,14 +76,44 @@ Identify the problem's structural signature:
 | "online / forced order" | Persistent DS, LCT, Online algorithms |
 | "interactive" | Binary Search, Adaptive strategies |
 
-### Step 3 — Algorithm mapping
+### Step 3 — Algorithm mapping (teach the recognition pattern)
 
-Once you have a candidate family, narrow to the specific technique. Always
-explain **why** the technique fits — connect it to the problem's structure,
-not just the keyword.
-
-For the full algorithm taxonomy with sub-categories, read
+Once you have a candidate family, narrow to the specific technique using
 [taxonomy.md](taxonomy.md).
+
+**Critical**: Do not just name the algorithm. For every recommendation,
+explicitly teach the learner the recognition pattern so they can identify
+the same tool in future problems on their own. Cover all three:
+
+1. **What structural property triggers this algorithm?**
+   State the concrete feature of the problem that makes this technique
+   applicable. Examples:
+   - Digit DP: "The problem asks to count or sum something over all integers
+     in a range [A, B]. That range-of-numbers structure is the signal —
+     decompose into f(B) − f(A−1) and process digits left-to-right."
+   - Binary search on answer: "The problem asks for the minimum X such that
+     some condition holds, and if X works then X+1 also works. That
+     monotonicity is the signal."
+   - Greedy (interval scheduling): "You're selecting non-overlapping
+     intervals to maximize count. Sorting by end time and always picking
+     the earliest-ending interval works because it leaves the most room
+     for future intervals."
+
+2. **Why this algorithm and not a similar one?**
+   Explain what would go wrong with the next-most-likely alternative:
+   - "Greedy fails here because the locally optimal choice can block a
+     globally better solution — that's the signal for DP instead."
+   - "BFS fails here because edges have different weights — that's why
+     you need Dijkstra."
+
+3. **The transferable pattern (next-time rule)**
+   Give the learner a one-sentence rule they can carry forward:
+   - "Any time a problem says 'how many integers in [L, R] satisfy [digit
+     property]', think Digit DP."
+   - "Any time you need the k-th ancestor or LCA on a static tree, think
+     Binary Lifting."
+   - "Any time you're merging intervals optimally, and the cost depends on
+     both endpoints, think Range DP with state dp[l][r]."
 
 ### Step 4 — Correctness and complexity
 
