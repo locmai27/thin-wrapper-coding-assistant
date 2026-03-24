@@ -204,6 +204,120 @@ Layer 2:  D* E*    Queue after: []
 Visit order: A → B → C → D → E
 ```
 
+## ML-specific diagram templates
+
+### Matrix multiplication
+
+```
+[1 2]     [5 6]     [1·5+2·7  1·6+2·8]     [19 22]
+[3 4]  ×  [7 8]  =  [3·5+4·7  3·6+4·8]  =  [43 50]
+
+  A    ×    B    =        row·col          =    AB
+```
+
+Show the dot product of each row-column pair explicitly for small matrices.
+
+### Vector projection
+
+```
+        b
+       /|
+      / |
+     /  |  r = b - p  (residual, perpendicular)
+    /   |
+   /    |
+  O─────p──────→ subspace (column space of A)
+        ^
+     projection of b
+```
+
+Label: original vector b, its shadow p on the subspace, and the residual r
+pointing straight up from p to b.
+
+### Scatter plot with principal components
+
+```
+     ·  ·                     PC1
+  ·  ·  · ·              ╱
+ ·  ·  ·  · ·          ╱
+  · ·  ·  · ·        ╱
+   ·  ·  ·  ·      ╱
+    · · · ·       ╱
+     · ·        ╱
+              ╱
+    ──────────────── PC2
+```
+
+Draw the data cloud, then overlay the principal component directions as
+arrows through the centroid, with PC1 along the longest axis.
+
+### Decision boundary
+
+```
+    Class +          │          Class -
+                     │
+   +    +    +       │       -    -
+     +     +    +    │    -     -
+   +    +       +    │  -    -     -
+      +    +         │     -    -
+                     │
+              decision boundary (hyperplane)
+```
+
+### Confusion matrix
+
+```
+                   Predicted
+              +              -
+         ┌──────────┬──────────┐
+    +    │  TP = 45  │  FN = 5   │  Recall = 45/50 = 90%
+Actual   ├──────────┼──────────┤
+    -    │  FP = 10  │  TN = 40  │
+         └──────────┴──────────┘
+           Prec = 45/55 = 82%
+```
+
+### Eigenvalue / eigenvector visualization
+
+```
+Before A applied:        After A applied:
+     ↑ v₂                     ↑ λ₂·v₂ (stretched by λ₂)
+     │                        │
+     │                        │
+ ────┼────→ v₁           ─────┼──────→ λ₁·v₁ (stretched by λ₁)
+     │                        │
+```
+
+Show eigenvectors as arrows before and after the matrix is applied —
+they stay in the same direction but change length.
+
+### Gradient descent path
+
+```
+   Loss
+    │  ·
+    │   ·  ← start
+    │    ·
+    │     ·  step 1
+    │      ·
+    │       · step 2
+    │        ·
+    │         · step 3
+    │          ·_____· ← converged (minimum)
+    └──────────────────── weight
+```
+
+### Concept dependency map
+
+```
+Eigenvalues ──→ Spectral Theorem ──→ PCA
+                      │                │
+                      ▼                ▼
+              Covariance Matrix    Kernel PCA
+```
+
+Use `──→` for prerequisites, `···>` for "related to."
+
 ## When NOT to draw
 
 - Pure math derivations (use equations instead)
@@ -216,6 +330,9 @@ This skill governs **presentation style**, not problem-solving strategy.
 Combine it with:
 - `cp-brainstorm` — draw diagrams while exploring approaches
 - `cp-coach` — illustrate the algorithm being mapped to
+- `ml-intuition` — visualize math/ML concepts with analogies
+- `ml-connect` — draw concept dependency maps
+- `ml-solve` — show step-by-step computations with matrix layouts
 
 The visual style applies on top of whatever reasoning framework the other
 skill provides.
